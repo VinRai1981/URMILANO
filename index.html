@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>UR MILANO | Dashboard</title>
+    <style>
+        /* Reset e Base */
+        body, html {
+            margin: 0;
+            padding: 0;
+            height: 100%;
+            font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
+            background: linear-gradient(135deg, #2c3e50 0%, #bdc3c7 50%, #2c3e50 100%);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            color: #1a1a1a;
+        }
+
+        /* Overlay per effetto metallico spazzolato */
+        .metal-overlay {
+            position: absolute;
+            top: 0; left: 0; width: 100%; height: 100%;
+            background: url('https://www.transparenttextures.com/patterns/brushed-alum.png');
+            opacity: 0.3;
+            pointer-events: none;
+        }
+
+        .container {
+            text-align: center;
+            z-index: 1;
+        }
+
+        /* Titolo UR MILANO */
+        h1 {
+            font-size: 5rem;
+            font-weight: 900;
+            letter-spacing: 15px;
+            margin-bottom: 40px;
+            background: linear-gradient(to bottom, #ffffff 0%, #95a5a6 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            filter: drop-shadow(2px 4px 6px rgba(0,0,0,0.3));
+            text-transform: uppercase;
+        }
+
+        /* Navigazione */
+        .nav-links {
+            display: flex;
+            gap: 30px;
+            justify-content: center;
+        }
+
+        .btn {
+            text-decoration: none;
+            color: #fff;
+            font-size: 1.2rem;
+            font-weight: 300;
+            text-transform: uppercase;
+            letter-spacing: 3px;
+            padding: 15px 40px;
+            border: 1px solid rgba(255,255,255,0.4);
+            background: rgba(0, 0, 0, 0.2);
+            transition: all 0.4s ease;
+            backdrop-filter: blur(5px);
+        }
+
+        .btn:hover {
+            background: rgba(255, 255, 255, 0.9);
+            color: #000;
+            border-color: #fff;
+            box-shadow: 0 0 20px rgba(255,255,255,0.4);
+            transform: translateY(-3px);
+        }
+
+        /* Responsive */
+        @media (max-width: 600px) {
+            h1 { font-size: 2.5rem; letter-spacing: 5px; }
+            .nav-links { flex-direction: column; gap: 15px; }
+        }
+    </style>
+</head>
+<body>
+    <div class="metal-overlay"></div>
+    
+    <div class="container">
+        <h1>UR MILANO</h1>
+        <div class="nav-links">
+            <a href="URL_DEL_TUO_FILE_TURNI" class="btn" target="_blank">Turni</a>
+            <a href="URL_DEL_TUO_FILE_PROGRAMMA" class="btn" target="_blank">Programma</a>
+        </div>
+    </div>
+</body>
+</html>
