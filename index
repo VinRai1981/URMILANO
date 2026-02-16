@@ -1,0 +1,76 @@
+HTML
+<!DOCTYPE html>
+<html lang="it">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Gestione Interna - Turni & Programma</title>
+    <style>
+        body { font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; margin: 0; line-height: 1.6; color: #333; }
+        header { background: #2c3e50; color: white; padding: 1rem 0; text-align: center; }
+        nav { display: flex; justify-content: center; background: #34495e; }
+        nav a { color: white; padding: 14px 20px; text-decoration: none; text-transform: uppercase; font-size: 14px; }
+        nav a:hover { background: #1abc9c; }
+        .container { padding: 20px; max-width: 1200px; margin: auto; }
+        .card-container { display: flex; gap: 20px; justify-content: center; margin-top: 50px; }
+        .card { border: 1px solid #ddd; padding: 20px; border-radius: 8px; text-align: center; width: 250px; transition: 0.3s; }
+        .card:hover { box-shadow: 0 4px 15px rgba(0,0,0,0.1); }
+        .btn { background: #1abc9c; color: white; padding: 10px 20px; text-decoration: none; border-radius: 5px; display: inline-block; margin-top: 10px; }
+        iframe { width: 100%; height: 600px; border: none; margin-top: 20px; }
+        .hidden { display: none; }
+    </style>
+</head>
+<body>
+
+<header>
+    <h1>Dashboard Operativa</h1>
+</header>
+
+<nav>
+    <a href="#" onclick="showPage('home')">Home</a>
+    <a href="#" onclick="showPage('turni')">Turni</a>
+    <a href="#" onclick="showPage('programma')">Programma</a>
+</nav>
+
+<div class="container">
+    <div id="home" class="content-section">
+        <h2>Benvenuto nel Portale Gestionale dell'UR MILANO</h2>
+        <p>Seleziona una delle opzioni qui sotto per consultare i dati aggiornati in tempo reale.</p>
+        <div class="card-container">
+            <div class="card">
+                <h3>Turni</h3>
+                <p>Visualizza i turni del personale.</p>
+                <a href="#" class="btn" onclick="showPage('turni')">Vai ai Turni</a>
+            </div>
+            <div class="card">
+                <h3>Programma</h3>
+                <p>Consulta la pianificazione delle attività.</p>
+                <a href="#" class="btn" onclick="showPage('programma')">Vai al Programma</a>
+            </div>
+        </div>
+    </div>
+
+    <div id="turni" class="content-section hidden">
+        <h2>Calendario Turni</h2>
+        <iframe src="https://gruppofsitaliane-my.sharepoint.com/personal/948224_rfi_it/_layouts/15/Doc.aspx?sourcedoc={18daa7d5-8cf7-475d-9952-da557afb1357}&action=embedview&wdAllowInteractivity=False&wdHideGridlines=True&wdHideHeaders=True&wdDownloadButton=True&wdInConfigurator=True&waccluster=GIT1&edaebp=&edaebf=ctrl"></iframe>
+    </div>
+
+    <div id="programma" class="content-section hidden">
+        <h2>Programma Attività</h2>
+        <iframe src="https://gruppofsitaliane-my.sharepoint.com/personal/948224_rfi_it/_layouts/15/Doc.aspx?sourcedoc={d276b4a8-acd9-4e22-92e6-c60f75e464ec}&action=embedview&wdAllowInteractivity=False&wdHideGridlines=True&wdHideHeaders=True&wdDownloadButton=True&wdInConfigurator=True&waccluster=GIT2&edaebp=&edaebf=ctrl"></iframe>
+    </div>
+</div>
+
+<script>
+    function showPage(pageId) {
+        // Nasconde tutte le sezioni
+        document.querySelectorAll('.content-section').forEach(section => {
+            section.classList.add('hidden');
+        });
+        // Mostra quella selezionata
+        document.getElementById(pageId).classList.remove('hidden');
+    }
+</script>
+
+</body>
+</html>
