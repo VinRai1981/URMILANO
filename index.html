@@ -2,94 +2,123 @@
 <html lang="it">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>UR MILANO | Dashboard</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>UR MILANO</title>
     <style>
-        /* Reset e Base */
+        :root {
+            --silver: linear-gradient(135deg, #f5f7fa 0%, #b8c6db 100%);
+            --metal-btn: linear-gradient(145deg, #ffffff, #d1d1d1);
+            --dark-metal: #2c3e50;
+        }
+
         body, html {
-            margin: 0;
-            padding: 0;
-            height: 100%;
-            font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
-            background: linear-gradient(135deg, #2c3e50 0%, #bdc3c7 50%, #2c3e50 100%);
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            color: #1a1a1a;
+            margin: 0; padding: 0; height: 100%;
+            font-family: 'Helvetica Neue', sans-serif;
+            background: var(--silver);
+            color: var(--dark-text);
+            overflow: hidden;
         }
 
-        /* Overlay per effetto metallico spazzolato */
-        .metal-overlay {
-            position: absolute;
-            top: 0; left: 0; width: 100%; height: 100%;
-            background: url('https://www.transparenttextures.com/patterns/brushed-alum.png');
-            opacity: 0.3;
-            pointer-events: none;
-        }
-
-        .container {
+        /* Contenitore Principale */
+        .app-container {
+            display: flex; flex-direction: column;
+            height: 100vh; width: 100%;
             text-align: center;
-            z-index: 1;
         }
 
-        /* Titolo UR MILANO */
+        /* Header Fisso */
+        header {
+            padding: 40px 20px;
+            background: rgba(255,255,255,0.2);
+            backdrop-filter: blur(10px);
+        }
+
         h1 {
-            font-size: 5rem;
-            font-weight: 900;
-            letter-spacing: 15px;
-            margin-bottom: 40px;
-            background: linear-gradient(to bottom, #ffffff 0%, #95a5a6 100%);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            filter: drop-shadow(2px 4px 6px rgba(0,0,0,0.3));
-            text-transform: uppercase;
+            font-size: 2.2rem; letter-spacing: 6px;
+            margin: 0; font-weight: 300;
+            text-transform: uppercase; color: var(--dark-metal);
         }
 
-        /* Navigazione */
-        .nav-links {
-            display: flex;
-            gap: 30px;
-            justify-content: center;
+        /* Sezioni */
+        .page {
+            display: none; flex-direction: column;
+            align-items: center; justify-content: center;
+            flex-grow: 1; padding: 20px;
         }
 
+        .active { display: flex; }
+
+        /* Pulsanti Metallici */
         .btn {
-            text-decoration: none;
-            color: #fff;
-            font-size: 1.2rem;
-            font-weight: 300;
-            text-transform: uppercase;
-            letter-spacing: 3px;
-            padding: 15px 40px;
-            border: 1px solid rgba(255,255,255,0.4);
-            background: rgba(0, 0, 0, 0.2);
-            transition: all 0.4s ease;
-            backdrop-filter: blur(5px);
+            width: 280px; padding: 20px; margin: 15px 0;
+            text-decoration: none; color: var(--dark-metal);
+            font-weight: bold; letter-spacing: 2px;
+            background: var(--metal-btn);
+            border-radius: 15px; border: 1px solid #a1a1a1;
+            box-shadow: 5px 5px 15px #a1a1a1, -5px -5px 15px #ffffff;
+            cursor: pointer; transition: 0.3s;
         }
 
-        .btn:hover {
-            background: rgba(255, 255, 255, 0.9);
-            color: #000;
-            border-color: #fff;
-            box-shadow: 0 0 20px rgba(255,255,255,0.4);
-            transform: translateY(-3px);
+        .btn:active {
+            box-shadow: inset 5px 5px 10px #a1a1a1, inset -5px -5px 10px #ffffff;
+            transform: scale(0.98);
         }
 
-        /* Responsive */
-        @media (max-width: 600px) {
-            h1 { font-size: 2.5rem; letter-spacing: 5px; }
-            .nav-links { flex-direction: column; gap: 15px; }
+        /* Visualizzatore Excel */
+        iframe {
+            width: 100%; height: 80vh;
+            border: none; border-radius: 10px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+        }
+
+        /* Navigazione Inferiore */
+        nav {
+            padding: 20px; background: rgba(0,0,0,0.05);
+            display: flex; justify-content: center; gap: 20px;
+        }
+
+        .nav-link {
+            color: var(--dark-metal); text-decoration: none;
+            font-size: 0.8rem; text-transform: uppercase;
+            letter-spacing: 1px; padding: 5px 10px;
+            border: 1px solid var(--dark-metal); border-radius: 5px;
         }
     </style>
 </head>
 <body>
-    <div class="metal-overlay"></div>
-    
-    <div class="container">
-        <h1>UR MILANO</h1>
-        <div class="nav-links">
-            <a href="URL_DEL_TUO_FILE_TURNI" class="btn" target="_blank">Turni</a>
-            <a href="URL_DEL_TUO_FILE_PROGRAMMA" class="btn" target="_blank">Programma</a>
-        </div>
+
+    <div class="app-container">
+        <header>
+            <h1 onclick="showPage('home')">UR MILANO</h1>
+        </header>
+
+        <section id="home" class="page active">
+            <div class="btn" onclick="showPage('turni')">TURNI</div>
+            <div class="btn" onclick="showPage('programma')">PROGRAMMA</div>
+        </section>
+
+        <section id="turni" class="page">
+            <iframe src="https://gruppofsitaliane-my.sharepoint.com/personal/948224_rfi_it/_layouts/15/Doc.aspx?sourcedoc={18daa7d5-8cf7-475d-9952-da557afb1357}&action=embedview&wdAllowInteractivity=False&wdHideGridlines=True&wdHideHeaders=True&wdDownloadButton=True&wdInConfigurator=True&waccluster=GIT2&edaebp=&edaebf=ctrl"></iframe>
+            <nav>
+                <a href="#" class="nav-link" onclick="showPage('home')">Home</a>
+                <a href="#" class="nav-link" onclick="showPage('programma')">Programma</a>
+            </nav>
+        </section>
+
+        <section id="programma" class="page">
+            <iframe src="https://gruppofsitaliane-my.sharepoint.com/personal/948224_rfi_it/_layouts/15/Doc.aspx?sourcedoc={d276b4a8-acd9-4e22-92e6-c60f75e464ec}&action=embedview&wdAllowInteractivity=False&wdHideGridlines=True&wdHideHeaders=True&wdDownloadButton=True&wdInConfigurator=True&waccluster=GIT2&edaebp=&edaebf=ctrl"></iframe>
+            <nav>
+                <a href="#" class="nav-link" onclick="showPage('home')">Home</a>
+                <a href="#" class="nav-link" onclick="showPage('turni')">Turni</a>
+            </nav>
+        </section>
     </div>
+
+    <script>
+        function showPage(id) {
+            document.querySelectorAll('.page').forEach(p => p.classList.remove('active'));
+            document.getElementById(id).classList.add('active');
+        }
+    </script>
 </body>
 </html>
